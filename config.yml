@@ -1,0 +1,29 @@
+kind: source
+spec:
+  name: aws
+  path: inhouse/aws
+  registry: inhouse
+  version: "v1.0.0"
+  tables:
+    - ec2_instances
+    - s3_buckets
+    - ec2_instances
+    - s3_buckets
+  regions:
+      - "*"
+  destinations:
+    - mongodb
+  spec:
+    max_retries: 10
+    max_backoff: 30
+    table_options:
+      ec2_instances:
+        filters:
+          instance_states: ["running", "stopped"]
+      s3_buckets:
+        filters:
+          tag: "environment"
+mongo:
+  uri: "mongodb://localhost:27017"
+  database: "cloud_inventory"
+  collection_prefix: "aws_"
