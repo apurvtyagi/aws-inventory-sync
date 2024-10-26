@@ -7,8 +7,6 @@ spec:
   tables:
     - ec2_instances
     - s3_buckets
-    - ec2_instances
-    - s3_buckets
   regions:
       - "*"
   destinations:
